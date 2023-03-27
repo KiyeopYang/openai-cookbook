@@ -22,7 +22,7 @@ prompt = st.text_input("Enter your search here","", key="input")
 
 if st.button('Submit', key='generationSubmit'):
     result_df = get_redis_results(client,prompt,INDEX_NAME)
-    
+    print(result_df) 
     # Build a prompt to provide the original query, the result and ask to summarise for the user
     summary_prompt = '''Summarise this result in a bulleted list to answer the search query a customer has sent.
     Search query: SEARCH_QUERY_HERE

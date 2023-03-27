@@ -70,6 +70,7 @@ def get_redis_results(redis_conn,query,index_name):
     
     # Extract info into a list
     query_result_list = []
+    print(query_result)
     for i, result in enumerate(query_result.docs):
         result_order = i
         text = result.text_chunk
@@ -78,5 +79,6 @@ def get_redis_results(redis_conn,query,index_name):
         
     # Display result as a DataFrame for ease of us
     result_df = pd.DataFrame(query_result_list)
+    print(result_df)
     result_df.columns = ['id','result','certainty']
     return result_df

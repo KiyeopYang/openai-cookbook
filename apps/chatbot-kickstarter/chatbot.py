@@ -30,6 +30,7 @@ class RetrievalAssistant:
     def _get_assistant_response(self, prompt):
         
         try:
+            print(prompt)
             completion = openai.ChatCompletion.create(
               model=CHAT_MODEL,
               messages=prompt,
@@ -53,7 +54,7 @@ class RetrievalAssistant:
     def ask_assistant(self, next_user_prompt):
         [self.conversation_history.append(x) for x in next_user_prompt]
         assistant_response = self._get_assistant_response(self.conversation_history)
-        
+        print(assistant_response)
         # Answer normally unless the trigger sequence is used "searching_for_answers"
         if 'searching for answers' in assistant_response['content'].lower():
             question_extract = openai.Completion.create(model=COMPLETIONS_MODEL,prompt=f"Extract the user's latest question and the year for that question from this conversation: {self.conversation_history}. Extract it as a sentence stating the Question and Year")
